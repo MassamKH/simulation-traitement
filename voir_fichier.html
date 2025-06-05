@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistiques – {{ nom }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: #34495e;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e6f7ff;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #2980b9;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .emoji {
+            font-size: 1.3em;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1><span class="emoji">📊</span> Taux de succès par traitement</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Traitement</th>
+                <th>Nombre total de cas</th>
+                <th>Nombre de succès</th>
+                <th>Taux de succès (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ligne in stats %}
+            <tr>
+                <td>{{ ligne.Traitement }}</td>
+                <td>{{ ligne.total }}</td>
+                <td>{{ ligne.succes }}</td>
+                <td><strong>{{ ligne.taux }}%</strong></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('fichiers') }}">⬅ Retour à la liste des fichiers</a>
+</body>
+</html>

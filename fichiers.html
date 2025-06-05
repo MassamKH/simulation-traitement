@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Fichiers CSV</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: #f3f6fa;
+            color: #333;
+            padding: 40px;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .scroll-container {
+            display: flex;
+            justify-content: center; /* centre horizontalement */
+        }
+
+        .scroll-row {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px;
+            max-width: 90vw;
+        }
+
+        .scroll-row::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .scroll-row::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 4px;
+        }
+
+        .card {
+            min-width: 220px;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            flex-shrink: 0;
+            background-color: rgba(52, 152, 219, 0.15);
+            transition: transform 0.2s ease;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            background-color: rgba(52, 152, 219, 0.25);
+        }
+
+        .card a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .card:nth-child(4n+1) {
+            background-color: rgba(52, 152, 219, 0.15); /* bleu */
+        }
+
+        .card:nth-child(4n+2) {
+            background-color: rgba(46, 204, 113, 0.15); /* vert */
+        }
+
+        .card:nth-child(4n+3) {
+            background-color: rgba(241, 196, 15, 0.15); /* jaune */
+        }
+
+        .card:nth-child(4n+4) {
+            background-color: rgba(231, 76, 60, 0.15); /* rouge */
+        }
+
+        .back {
+            display: inline-block;
+            margin: 40px auto 0;
+            text-align: center;
+            background-color: rgba(46, 204, 113, 0.15); /* vert transparent */
+            color: #2c3e50;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .back:hover {
+            background-color: rgba(46, 204, 113, 0.25);
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>📂 Fichiers CSV disponibles</h1>
+
+    <div class="scroll-container">
+        <div class="scroll-row">
+            {% for fichier in fichiers %}
+            <div class="card">
+                <a href="{{ url_for('voir_fichier') }}?nom={{ fichier }}">{{ fichier }}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="center">
+        <a class="back" href="{{ url_for('index') }}">⬅ Retour à l'accueil</a>
+    </div>
+</body>
+</html>

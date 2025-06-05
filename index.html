@@ -1,0 +1,46 @@
+<!-- fichier : templates/index.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulateur Médical</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div class="container py-4">
+  <h1 class="text-center mb-4">Simulateur de Stratégies Médicales</h1>
+
+  <form method="POST" action="/simulate">
+    <div class="mb-3">
+      <label for="strategie" class="form-label">Stratégie :</label>
+      <select name="strategie" id="strategie" class="form-select">
+        <option value="uniforme">Uniforme</option>
+        <option value="greedy">Greedy</option>
+        <option value="epsilon">ε-Greedy</option>
+        <option value="hoeffding">Hoeffding</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="n" class="form-label">Nombre de patients :</label>
+      <input type="number" name="n" class="form-control" value="1000" min="1">
+    </div>
+
+    <button type="submit" class="btn btn-primary">▶️ Lancer la simulation</button>
+  </form>
+
+  <hr class="my-5">
+
+  <h2 class="mb-3">Visualisation</h2>
+  <a href="/graphes" class="btn btn-success me-2">📊 Tous les graphes</a>
+  <a href="/comparaison" class="btn btn-warning me-2">📈 Comparaison</a>
+
+  <a href="{{ url_for('fichiers') }}" class="btn btn-secondary me-2">📂 Voir les fichiers CSV</a>
+
+  {% if show_rapport_button %}
+  <a href="/rapport" class="btn btn-outline-info mt-1">📄 Voir le rapport graphique</a>
+
+  {% endif %}
+</div>
+</body>
+</html>
